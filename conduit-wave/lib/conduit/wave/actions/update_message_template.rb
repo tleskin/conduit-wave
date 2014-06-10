@@ -1,11 +1,11 @@
 require 'conduit/wave/configuration'
 
 module Conduit::Driver::Wave
-  class CreateMessageTemplate < Conduit::Core::Action
+  class UpdateMessageTemplate < CreateMessageTemplate
     remote_url Conduit::Wave::Configuration.api_host
 
     required_attributes *Conduit::Driver::Wave.credentials,
-      :profile_id, :body, :sender, :delivery_mechanism
+      :message_template_id, :profile_id, :body, :sender, :delivery_mechanism
 
     # Required entry method, the main driver
     # class will use this to trigger the
@@ -15,7 +15,7 @@ module Conduit::Driver::Wave
       request(
         body:     view,
         method:   :put,
-        path:     "message_templates/#{@options[:message_template_id]}"
+        path:     "message_templates/#{@options[:message_template_id]}",
         headers:  { 'Content-Type' => 'application/json' }
       )
     end

@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   # Dependencies
   #
   s.add_dependency 'conduit', '~> 0.3.0'
-  s.add_dependency 'multi_json', '~> 1.9.2'
+  s.add_dependency 'multi_json', '~> 1.10.1'
 
   # Development Dependencies
   #

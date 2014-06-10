@@ -20,6 +20,10 @@ module Conduit::Driver::Wave
       object_path('outbound_messages/0/message')
     end
 
+    attribute :message_template_id do
+      object_path('outbound_messages/0/message_template_id')
+    end
+
     attribute :deliver_mechanism do
       object_path('outbound_messages/0/delivery_mechanism')
     end
