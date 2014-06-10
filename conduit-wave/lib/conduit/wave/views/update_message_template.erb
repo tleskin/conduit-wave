@@ -1,0 +1,9 @@
+<%= MultiJson.dump({
+  auth_token:    token,
+  message_template: {
+    sender:             sender,
+    body:               body,
+    delivery_mechanism: delivery_mechanism,
+    profile_id:         profile_id
+  }
+}) %>
