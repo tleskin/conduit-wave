@@ -1,7 +1,5 @@
 # Require Files
 #
-require 'rails'
-require 'active_record'
 require 'conduit/wave'
 require 'conduit/wave/driver'
 
