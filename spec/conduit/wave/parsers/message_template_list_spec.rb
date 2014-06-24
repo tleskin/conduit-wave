@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Conduit::Driver::Wave::ListMessageTemplates::Parser do
+describe Conduit::Driver::Wave::MessageTemplateList::Parser do
   include JsonResponses
 
   subject { described_class.new(list_message_templates_json_response) }

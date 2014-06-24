@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Conduit::Driver::Wave::ListProfiles::Parser do
+describe Conduit::Driver::Wave::ProfileList::Parser do
   include JsonResponses
 
   subject { described_class.new(list_profiles_json_response) }

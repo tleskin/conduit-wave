@@ -3,7 +3,7 @@ require 'conduit/wave/parsers/base'
 module Conduit::Driver::Wave
   # Parse the response from the order creation
   # endpoint of Wave Api
-  class ListMessageTemplates::Parser < Parser::Base
+  class MessageTemplateList::Parser < Parser::Base
     attribute :message_template_count do
       object_path('message_templates').size
     end

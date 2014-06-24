@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-describe Conduit::Driver::Wave::ListProfiles do
+describe Conduit::Driver::Wave::MessageTemplateList do
   subject do
     described_class.new(
       token: 'foo-bar'
     )
   end
 
-  its(:remote_url) { should =~ /\/profiles\z/ }
+  its(:remote_url) { should =~ /\/message_templates\z/ }
 
   %i(token).each do |required_attr|
     context "##{required_attr}" do
