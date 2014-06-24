@@ -7,8 +7,8 @@ module Conduit
       required_credentials :token
 
       action :create_message_template
-      action :list_message_templates
-      action :list_profiles
+      action :message_template_list
+      action :profile_list
       action :send_message
       action :update_message_template
     end

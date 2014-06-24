@@ -12,8 +12,6 @@ describe Conduit::Driver::Wave::UpdateMessageTemplate do
     )
   end
 
-  its(:remote_url) { should_not be_blank }
-
   %i(token profile_id message_template_id body sender delivery_mechanism).
     each do |required_attr|
     context "##{required_attr}" do

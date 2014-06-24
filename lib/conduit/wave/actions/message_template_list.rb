@@ -1,8 +1,8 @@
 require 'conduit/wave/configuration'
 
 module Conduit::Driver::Wave
-  class ListProfiles < Conduit::Core::Action
-    remote_url "#{Conduit::Wave::Configuration.api_host}/profiles"
+  class MessageTemplateList < Conduit::Core::Action
+    remote_url "#{Conduit::Wave::Configuration.api_host}/message_templates"
 
     required_attributes *Conduit::Driver::Wave.credentials
 

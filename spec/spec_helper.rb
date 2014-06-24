@@ -2,6 +2,7 @@
 #
 require 'conduit/wave'
 require 'conduit/wave/driver'
+require 'rspec/its'
 
 # Load all of the _spec.rb files
 #
@@ -14,5 +15,8 @@ end
 RSpec.configure do |config|
   config.before(:suite) do
     Excon.defaults[:mock] = true
+  end
+  config.expect_with :rspec do |c|
+    c.syntax = [:should, :expect]
   end
 end
