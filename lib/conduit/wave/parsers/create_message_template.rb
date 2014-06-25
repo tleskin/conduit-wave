@@ -16,6 +16,10 @@ module Conduit::Driver::Wave
       object_path('message_templates/0/body')
     end
 
+    attribute :name do
+      object_path('message_templates/0/name')
+    end
+
     attribute :delivery_mechanism do
       object_path('message_templates/0/delivery_mechanism')
     end

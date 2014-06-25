@@ -18,9 +18,9 @@ module Conduit::Driver::Wave
     private
 
     def template_attributes_from(message_template_attr = {})
-      template_attr_id = %w(sender body delivery_mechanism profile_id)
+      template_attr_id = %w(sender name body delivery_mechanism profile_id)
       template_attr = message_template_attr.slice(*template_attr_id)
-      template_attr.merge('template_id' => message_template_attr['id'])
+      template_attr.merge('message_template_id' => message_template_attr['id'])
     end
   end
 end

@@ -15,6 +15,7 @@ tmp/*
 log/*
 coverage/*
 vendor/bundle
+dump.rdb
 
 spec/dummy/log/*
 spec/dummy/tmp/*
