@@ -7,6 +7,8 @@ module Conduit::Driver::Wave
     required_attributes *Conduit::Driver::Wave.credentials,
       :message_template_id, :profile_id, :body, :sender, :delivery_mechanism
 
+    optional_attributes :subject, :format
+
     # Required entry method, the main driver
     # class will use this to trigger the
     # request.

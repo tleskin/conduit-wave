@@ -1,13 +1,11 @@
 require 'conduit/wave/configuration'
 
 module Conduit::Driver::Wave
-  class CreateMessageTemplate < Conduit::Core::Action
-    remote_url "#{Conduit::Wave::Configuration.api_host}/message_templates"
+  class CreateProfile < Conduit::Core::Action
+    remote_url "#{Conduit::Wave::Configuration.api_host}/profiles"
 
-    required_attributes *Conduit::Driver::Wave.credentials,
-      :profile_id, :body, :sender, :delivery_mechanism
-
-    optional_attributes :name, :subject, :format
+    required_attributes *Conduit::Driver::Wave.credentials, :name
+    optional_attributes :provider, :credentials
 
     # Required entry method, the main driver
     # class will use this to trigger the
