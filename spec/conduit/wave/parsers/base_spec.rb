@@ -47,4 +47,16 @@ describe Conduit::Driver::Wave::Parser::Base do
       its(:response_errors) { should_not be_empty }
     end
   end
+
+  context 'with a nil response (ISE/500)' do
+    subject { described_class.new(nil) }
+
+    describe '#response_status' do
+      its(:response_status) { should eql 'failure' }
+    end
+
+    describe '#response_errors' do
+      its(:response_errors) { should_not be_nil }
+    end
+  end
 end

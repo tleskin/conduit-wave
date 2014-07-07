@@ -43,8 +43,9 @@ module Conduit::Driver::Wave
       #     => Price attribute of the first element in
       #     the product array
       def object_path(path)
-        data = json
+        return nil if json.nil?
 
+        data = json
         path.split('/').map do |element|
           key = element.match(/\A\d+\Z/) ? element.to_i : element
           data = data[key]
