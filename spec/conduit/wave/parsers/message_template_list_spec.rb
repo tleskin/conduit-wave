@@ -15,7 +15,7 @@ describe Conduit::Driver::Wave::MessageTemplateList::Parser do
   end
 
   describe '#message_templates' do
-    %i(sender body delivery_mechanism profile_id template_id).each do |attr_id|
+    %i(sender body delivery_mechanism profile_id message_template_id).each do |attr_id|
       context "##{attr_id}" do
         it 'should be supported' do
           subject.message_templates.each do |message_template|
@@ -26,7 +26,7 @@ describe Conduit::Driver::Wave::MessageTemplateList::Parser do
         it 'should map the corresponding json attribute' do
           result = subject.message_templates.first.send(attr_id)
 
-          attr_id = 'id' if attr_id == :template_id
+          attr_id = 'id' if attr_id == :message_template_id
           result.should eql response_hash['message_templates'][0][attr_id.to_s]
         end
       end

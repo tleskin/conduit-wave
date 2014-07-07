@@ -24,6 +24,14 @@ module Conduit::Driver::Wave
       object_path('message_templates/0/delivery_mechanism')
     end
 
+    attribute :subject do
+      object_path('message_templates/0/subject')
+    end
+
+    attribute :format do
+      object_path('message_templates/0/format')
+    end
+
     attribute :profile_id do
       object_path('message_templates/0/profile_id')
     end
