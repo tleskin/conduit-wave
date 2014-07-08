@@ -6,9 +6,12 @@ module Conduit
 
       required_credentials :token
 
+      action :authenticate_user
+      action :create_user
       action :create_message_template
       action :message_template_list
       action :profile_list
+      action :create_profile
       action :send_message
       action :update_message_template
     end

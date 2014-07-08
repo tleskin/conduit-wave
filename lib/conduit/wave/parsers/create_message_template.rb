@@ -28,7 +28,7 @@ module Conduit::Driver::Wave
       object_path('message_templates/0/subject')
     end
 
-    attribute :format do
+    attribute :email_format do
       object_path('message_templates/0/format')
     end
 
