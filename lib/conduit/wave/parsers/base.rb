@@ -46,6 +46,7 @@ module Conduit::Driver::Wave
         return nil if json.nil?
 
         data = json
+
         path.split('/').map do |element|
           key = element.match(/\A\d+\Z/) ? element.to_i : element
           data = data[key]
