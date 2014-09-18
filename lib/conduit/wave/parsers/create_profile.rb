@@ -19,5 +19,9 @@ module Conduit::Driver::Wave
     attribute :provider do
       object_path('profiles/0/provider')
     end
+
+    def response_content?
+      !object_path('profiles').nil?
+    end
   end
 end

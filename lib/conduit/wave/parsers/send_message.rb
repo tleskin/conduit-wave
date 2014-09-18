@@ -24,12 +24,16 @@ module Conduit::Driver::Wave
       object_path('outbound_messages/0/message_template_id')
     end
 
-    attribute :deliver_mechanism do
+    attribute :delivery_mechanism do
       object_path('outbound_messages/0/delivery_mechanism')
     end
 
     attribute :identifier do
       object_path('outbound_messages/0/identifier')
+    end
+
+    def response_content?
+      !object_path('outbound_messages').nil?
     end
   end
 end

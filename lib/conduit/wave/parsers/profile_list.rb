@@ -15,6 +15,10 @@ module Conduit::Driver::Wave
       end
     end
 
+    def response_content?
+      !object_path('profiles').nil?
+    end
+
     private
 
     def profile_attributes_from(profile_attr = {})

@@ -9,6 +9,8 @@ module Conduit
       action :authenticate_user
       action :create_user
       action :create_message_template
+      action :integration_create
+      action :integration_list
       action :message_template_list
       action :profile_list
       action :create_profile
