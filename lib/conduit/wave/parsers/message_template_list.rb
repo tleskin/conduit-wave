@@ -15,6 +15,10 @@ module Conduit::Driver::Wave
       end
     end
 
+    def response_content?
+      !object_path('message_templates').nil?
+    end
+
     private
 
     def template_attributes_from(message_template_attr = {})

@@ -35,5 +35,9 @@ module Conduit::Driver::Wave
     attribute :profile_id do
       object_path('message_templates/0/profile_id')
     end
+
+    def response_content?
+      !object_path('message_templates').nil?
+    end
   end
 end

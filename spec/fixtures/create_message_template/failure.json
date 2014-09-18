@@ -1,0 +1,2 @@
+{"message_templates":[{"body":"This is a test.","sender":"+17205482691","delivery_mechanism":"sms","id":null,"created_at":null,"updated_at":null,"profile_id":1}],"errors":{"sender":["is required."]},"meta":{}}
+

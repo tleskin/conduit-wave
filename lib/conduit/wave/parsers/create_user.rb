@@ -19,5 +19,9 @@ module Conduit::Driver::Wave
     attribute :email do
       object_path('users/0/email')
     end
+
+    def response_content?
+      !object_path('users').nil?
+    end
   end
 end

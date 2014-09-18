@@ -15,5 +15,9 @@ module Conduit::Driver::Wave
     attribute :auth_token do
       object_path('auth_token')
     end
+
+    def response_content?
+      !object_path('auth_token').nil? && !object_path('email').nil?
+    end
   end
 end

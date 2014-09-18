@@ -10,6 +10,7 @@ module Conduit::Driver::Wave
         @json    = MultiJson.load(json)
         @success = true
       rescue MultiJson::ParseError
+        @json = unexpected_response_hash
         @success = false
       end
 
@@ -19,7 +20,14 @@ module Conduit::Driver::Wave
       #
       def response_status
         @success &&= response_errors.empty?
-        @success ? 'success' : 'failure'
+
+        if @success
+          'success'
+        elsif !response_content?
+          'error'
+        else
+          'failure'
+        end
       end
 
       # Errors returned from the Wave API
@@ -28,9 +36,17 @@ module Conduit::Driver::Wave
         object_path('errors') || []
       end
 
+      def response_content?
+        raise(StandardError, 'Please implement response_content? in your parser')
+      end
+
       private
 
       attr_reader :json
+
+      def unexpected_response_hash
+        { 'errors' => { 'base' => 'Unexpected response from server.' } }
+      end
 
       # An xpath-like accessor for retrieving
       # data elements from the json.
