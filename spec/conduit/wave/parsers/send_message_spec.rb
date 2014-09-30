@@ -1,18 +1,42 @@
 require 'spec_helper'
 
 describe Conduit::Driver::Wave::SendMessage::Parser do
-  include JsonResponses
+  include ServerResponse
 
-  subject { described_class.new(send_message_json_response) }
+  subject { described_class.new(server_response) }
 
-  its(:message_id)          { should eql response_hash['id'] }
-  its(:recipient)           { should eql response_hash['recipient'] }
-  its(:message)             { should eql response_hash['message'] }
-  its(:message_template_id) { should eql response_hash['message_template_id'] }
-  its(:identifier)          { should eql response_hash['identifier'] }
+  context 'successful message sent' do
+    let(:response_file) { %w(send_message success.json) }
+    it_should_behave_like 'parser success response'
 
-  def response_hash
-    @response_hash ||= MultiJson.load(send_message_json_response)
-    @response_hash['outbound_messages'][0]
+    its(:message_id) do
+      should eql response_hash_item('outbound_messages')['id']
+    end
+
+    its(:recipient) do
+      should eql response_hash_item('outbound_messages')['recipient']
+    end
+
+    its(:message) do
+      should eql response_hash_item('outbound_messages')['message']
+    end
+
+    its(:message_template_id) do
+      should eql response_hash_item('outbound_messages')['message_template_id']
+    end
+
+    its(:identifier) do
+      should eql response_hash_item('outbound_messages')['identifier']
+    end
+  end
+
+  context 'unsuccessful message sent' do
+    let(:response_file) { %w(send_message failure.json) }
+    it_should_behave_like 'parser failure response'
+  end
+
+  context 'unexpected server response' do
+    let(:response_file)   { %w(error.json) }
+    it_should_behave_like 'parser error response'
   end
 end
