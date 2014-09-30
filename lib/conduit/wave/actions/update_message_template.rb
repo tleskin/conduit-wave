@@ -1,9 +1,5 @@
-require 'conduit/wave/configuration'
-
 module Conduit::Driver::Wave
   class UpdateMessageTemplate < CreateMessageTemplate
-    remote_url Conduit::Wave::Configuration.api_host
-
     required_attributes *Conduit::Driver::Wave.credentials,
       :message_template_id, :profile_id, :body, :sender, :delivery_mechanism
 
@@ -14,12 +10,13 @@ module Conduit::Driver::Wave
     # request.
     #
     def perform
-      request(
-        body:     view,
-        method:   :put,
-        path:     "message_templates/#{@options[:message_template_id]}",
-        headers:  { 'Content-Type' => 'application/json' }
+      response = request(
+        body:   view,
+        method: :put,
+        path:   "message_templates/#{@options[:message_template_id]}"
       )
+      parser   = parser_class.new(response.body)
+      Conduit::ApiResponse.new(raw_response: response, parser: parser)
     end
   end
 end

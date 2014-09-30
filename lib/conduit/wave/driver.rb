@@ -1,3 +1,5 @@
+require 'conduit/wave/actions/base'
+
 module Conduit
   module Driver
     # Conduit Driver for the BeQuick Wave Api

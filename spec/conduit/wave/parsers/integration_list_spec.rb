@@ -1,22 +1,23 @@
 require 'spec_helper'
 
-describe Conduit::Driver::Wave::CreateProfile::Parser do
+describe Conduit::Driver::Wave::IntegrationList::Parser do
   include ServerResponse
 
   subject { described_class.new(server_response) }
 
-  context 'successful profile creation' do
-    let(:response_file) { %w(create_profile success.json) }
+  context 'successful integration list' do
+    let(:response_file) { %w(integration_list success.json) }
     it_should_behave_like 'parser success response'
   end
 
-  context 'unsuccessful profile creation' do
-    let(:response_file) { %w(create_profile failure.json) }
+  context 'unsuccessful integration list' do
+    let(:response_file) { %w(integration_list failure.json) }
     it_should_behave_like 'parser failure response'
   end
 
-  context 'profile creation error' do
+  context 'unexpected server response' do
     let(:response_file)   { %w(error.json) }
     it_should_behave_like 'parser error response'
   end
 end
+

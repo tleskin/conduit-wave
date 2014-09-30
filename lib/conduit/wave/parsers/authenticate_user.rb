@@ -5,6 +5,7 @@ module Conduit::Driver::Wave
   # endpoint of Wave Api
   class AuthenticateUser::Parser < Parser::Base
     def response_errors
+      return unexpected_response_hash['errors'] if !response_content?
       object_path('error') || []
     end
 
@@ -17,7 +18,8 @@ module Conduit::Driver::Wave
     end
 
     def response_content?
-      !object_path('auth_token').nil? && !object_path('email').nil?
+      !(object_path('auth_token').nil? && object_path('email').nil?) ||
+        !object_path('error').nil?
     end
   end
 end

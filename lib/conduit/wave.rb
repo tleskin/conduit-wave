@@ -1,6 +1,5 @@
 require 'conduit/wave/version'
 require 'conduit/wave/configuration'
-
 require 'conduit'
 
 # Set the driver path
