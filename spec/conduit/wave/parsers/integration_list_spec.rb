@@ -19,5 +19,9 @@ describe Conduit::Driver::Wave::IntegrationList::Parser do
     let(:response_file)   { %w(error.json) }
     it_should_behave_like 'parser error response'
   end
-end
 
+  context 'internal server error in wave' do
+    let(:response_file)   { %w(ise.json) }
+    it_should_behave_like 'parser error response'
+  end
+end

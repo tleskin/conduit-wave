@@ -5,7 +5,7 @@ module Conduit::Driver::Wave
   # endpoint of Wave Api
   class AuthenticateUser::Parser < Parser::Base
     def response_errors
-      return unexpected_response_hash['errors'] if !response_content?
+      return unexpected_response_hash['errors'] if ise? || !response_content?
       object_path('error') || []
     end
 
