@@ -23,7 +23,7 @@ module Conduit::Driver::Wave
 
         if @success
           'success'
-        elsif !response_content?
+        elsif ise? || !response_content?
           'error'
         else
           'failure'
@@ -33,6 +33,8 @@ module Conduit::Driver::Wave
       # Errors returned from the Wave API
       #
       def response_errors
+        return unexpected_response_hash['errors'] if ise?
+
         object_path('errors') || []
       end
 
@@ -43,6 +45,12 @@ module Conduit::Driver::Wave
       private
 
       attr_reader :json
+
+      def ise?
+        status = object_path('status')
+
+        !status.nil? && status.to_i == 500 ? true : false
+      end
 
       def unexpected_response_hash
         { 'errors' => { 'base' => 'Unexpected response from server.' } }
