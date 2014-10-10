@@ -1,26 +1,15 @@
 require 'spec_helper'
 
-describe Conduit::Driver::Wave::MessageTemplateList do
-  subject do
-    described_class.new(
-      token: 'foo-bar'
-    )
-  end
-
-  its(:remote_url) { should =~ /\/message_templates\z/ }
-
-  %i(token).each do |required_attr|
-    context "##{required_attr}" do
-      it 'should be a required attribute' do
-        subject.requirements.should include required_attr
-      end
-    end
-  end
-
+describe Conduit::Driver::Wave::IntegrationCreate do
   context 'when providing a override host' do
     subject do
       described_class.new(
         token:         'foo-bar',
+        driver:        'atom',
+        profile_id:    1,
+        credentials:{
+          token: :token
+        },
         host_override: 'http://www.hello-labs.com'
       )
     end
@@ -31,7 +20,12 @@ describe Conduit::Driver::Wave::MessageTemplateList do
   it_should_behave_like 'parser error response' do
     subject do
       described_class.new(
-        token:              'foo-bar',
+        token:         'foo-bar',
+        driver:        'atom',
+        profile_id:    1,
+        credentials:{
+          token: :token
+        },
         mock: :error
       ).perform.parser
     end
@@ -40,7 +34,12 @@ describe Conduit::Driver::Wave::MessageTemplateList do
   it_should_behave_like 'parser failure response' do
     subject do
       described_class.new(
-        token:              'foo-bar',
+        token:         'foo-bar',
+        driver:        'atom',
+        profile_id:    1,
+        credentials:{
+          token: :token
+        },
         mock: :failure
       ).perform.parser
     end
@@ -49,7 +48,12 @@ describe Conduit::Driver::Wave::MessageTemplateList do
   it_should_behave_like 'parser success response' do
     subject do
       described_class.new(
-        token:              'foo-bar',
+        token:         'foo-bar',
+        driver:        'atom',
+        profile_id:    1,
+        credentials:{
+          token: :token
+        },
         mock: :success
       ).perform.parser
     end

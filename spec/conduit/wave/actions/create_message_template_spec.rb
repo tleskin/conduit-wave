@@ -20,4 +20,58 @@ describe Conduit::Driver::Wave::CreateMessageTemplate do
       end
     end
   end
+
+  context 'when providing a override host' do
+    subject do
+      described_class.new(
+        token:              'foo-bar',
+        profile_id:         1,
+        body:               'Your PIN is {{pin}}',
+        sender:             '2125551212',
+        delivery_mechanism: 'sms',
+        host_override: 'http://www.hello-labs.com'
+      )
+    end
+
+    its(:remote_url) { should =~ /hello-labs/ }
+  end
+
+  it_should_behave_like 'parser error response' do
+    subject do
+      described_class.new(
+        token:              'foo-bar',
+        profile_id:         1,
+        body:               'Your PIN is {{pin}}',
+        sender:             '2125551212',
+        delivery_mechanism: 'sms',
+        mock: :error
+      ).perform.parser
+    end
+  end
+
+  it_should_behave_like 'parser failure response' do
+    subject do
+      described_class.new(
+        token:              'foo-bar',
+        profile_id:         1,
+        body:               'Your PIN is {{pin}}',
+        sender:             '2125551212',
+        delivery_mechanism: 'sms',
+        mock: :failure
+      ).perform.parser
+    end
+  end
+
+  it_should_behave_like 'parser success response' do
+    subject do
+      described_class.new(
+        token:              'foo-bar',
+        profile_id:         1,
+        body:               'Your PIN is {{pin}}',
+        sender:             '2125551212',
+        delivery_mechanism: 'sms',
+        mock: :success
+      ).perform.parser
+    end
+  end
 end

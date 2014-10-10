@@ -3,6 +3,7 @@
 require 'conduit/wave'
 require 'conduit/wave/driver'
 require 'rspec/its'
+include Conduit::Driver::Wave
 
 # Load all of the _spec.rb files
 #
