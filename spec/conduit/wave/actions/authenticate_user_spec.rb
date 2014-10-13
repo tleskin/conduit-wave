@@ -21,7 +21,7 @@ describe Conduit::Driver::Wave::AuthenticateUser do
         token:         'foo-bar',
         email:         'test@tester.com',
         password:      '*****',
-        mock: :error
+        mock_status: :error
       ).perform.parser
     end
   end
@@ -32,7 +32,7 @@ describe Conduit::Driver::Wave::AuthenticateUser do
         token:         'foo-bar',
         email:         'test@tester.com',
         password:      '*****',
-        mock: :failure
+        mock_status: :failure
       ).perform.parser
     end
   end
@@ -43,7 +43,7 @@ describe Conduit::Driver::Wave::AuthenticateUser do
         token:         'foo-bar',
         email:         'test@tester.com',
         password:      '*****',
-        mock: :success
+        mock_status: :success
       ).perform.parser
     end
   end

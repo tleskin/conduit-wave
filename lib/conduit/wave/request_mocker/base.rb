@@ -1,15 +1,14 @@
-require 'forwardable'
 require 'erb'
 require 'tilt'
 
 module Conduit::Wave::RequestMocker
   class Base
-    FIXTURE_PREFIX = File.dirname(__FILE__) + '/fixtures/responses'.freeze
+    FIXTURE_PREFIX = "#{File.dirname(__FILE__)}/fixtures/responses".freeze
 
     def initialize(base, options = nil)
       @base = base
       @options = options
-      @mock_status = options[:mock] || :success
+      @mock_status = options[:mock_status] || :success
     end
 
     def mock

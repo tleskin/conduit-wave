@@ -44,7 +44,7 @@ describe Conduit::Driver::Wave::CreateMessageTemplate do
         body:               'Your PIN is {{pin}}',
         sender:             '2125551212',
         delivery_mechanism: 'sms',
-        mock: :error
+        mock_status: :error
       ).perform.parser
     end
   end
@@ -57,7 +57,7 @@ describe Conduit::Driver::Wave::CreateMessageTemplate do
         body:               'Your PIN is {{pin}}',
         sender:             '2125551212',
         delivery_mechanism: 'sms',
-        mock: :failure
+        mock_status: :failure
       ).perform.parser
     end
   end
@@ -70,7 +70,7 @@ describe Conduit::Driver::Wave::CreateMessageTemplate do
         body:               'Your PIN is {{pin}}',
         sender:             '2125551212',
         delivery_mechanism: 'sms',
-        mock: :success
+        mock_status: :success
       ).perform.parser
     end
   end

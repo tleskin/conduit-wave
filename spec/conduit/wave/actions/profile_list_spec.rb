@@ -32,7 +32,7 @@ describe Conduit::Driver::Wave::ProfileList do
     subject do
       described_class.new(
         token: 'foo-bar',
-        mock:  :error
+        mock_status:  :error
       ).perform.parser
     end
   end
@@ -41,7 +41,7 @@ describe Conduit::Driver::Wave::ProfileList do
     subject do
       described_class.new(
         token: 'foo-bar',
-        mock:  :failure
+        mock_status:  :failure
       ).perform.parser
     end
   end
@@ -50,7 +50,7 @@ describe Conduit::Driver::Wave::ProfileList do
     subject do
       described_class.new(
         token: 'foo-bar',
-        mock:  :success
+        mock_status:  :success
       ).perform.parser
     end
   end

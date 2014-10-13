@@ -48,7 +48,7 @@ describe Conduit::Driver::Wave::UpdateMessageTemplate do
         sender:               '2125551212',
         delivery_mechanism:   'sms',
         format:               'test',
-        mock: :error
+        mock_status: :error
       ).perform.parser
     end
   end
@@ -63,7 +63,7 @@ describe Conduit::Driver::Wave::UpdateMessageTemplate do
         sender:               '2125551212',
         delivery_mechanism:   'sms',
         format:               'test',
-        mock: :failure
+        mock_status: :failure
       ).perform.parser
     end
   end
@@ -78,7 +78,7 @@ describe Conduit::Driver::Wave::UpdateMessageTemplate do
         sender:               '2125551212',
         delivery_mechanism:   'sms',
         format:               'test',
-        mock: :success
+        mock_status: :success
       ).perform.parser
     end
   end 

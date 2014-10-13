@@ -1,9 +1,16 @@
 # Default url, required_attributes, and Content-Type for
 # Wave API.
 #
+require 'forwardable'
+
 module Conduit::Driver::Wave
   class Base < Conduit::Core::Action
+    extend Forwardable
+
     Excon.defaults[:headers]['Content-Type'] = 'application/json'
+
+    def_delegator :'self.class', :http_method
+    def_delegator :'self.class', :url_route
 
     class << self
       def http_method(http_method = nil)
@@ -28,14 +35,14 @@ module Conduit::Driver::Wave
 
     def remote_url
       if host_override?
-        @options[:host_override] + self.class.url_route
+        @options[:host_override] + url_route
       else
-        "#{Conduit::Wave::Configuration.api_host}" + self.class.url_route
+        Conduit::Wave::Configuration.api_host + url_route
       end
     end
 
     def perform_request
-      response = request(body: view, method: self.class.http_method)
+      response = request(body: view, method: http_method)
       parser   = parser_class.new(response.body)
       Conduit::ApiResponse.new(raw_response: response, parser: parser)
     end
@@ -51,11 +58,11 @@ module Conduit::Driver::Wave
     end
 
     def mock_mode?
-      @options.has_key?(:mock)
+      @options.key?(:mock_status)
     end
 
     def host_override?
-      @options.has_key?(:host_override)
+      @options.key?(:host_override)
     end
   end
 end

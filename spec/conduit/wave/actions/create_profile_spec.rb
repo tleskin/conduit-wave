@@ -20,7 +20,7 @@ describe Conduit::Driver::Wave::CreateProfile do
         token:         'foo-bar',
         name:          'test',
         provider:      'twilio',
-        mock: :error
+        mock_status: :error
       ).perform.parser
     end
   end
@@ -31,7 +31,7 @@ describe Conduit::Driver::Wave::CreateProfile do
         token:         'foo-bar',
         name:          'test',
         provider:      'twilio',
-        mock: :failure
+        mock_status: :failure
       ).perform.parser
     end
   end
@@ -42,7 +42,7 @@ describe Conduit::Driver::Wave::CreateProfile do
         token:         'foo-bar',
         name:          'test',
         provider:      'twilio',
-        mock: :success
+        mock_status: :success
       ).perform.parser
     end
   end

@@ -26,7 +26,7 @@ describe Conduit::Driver::Wave::IntegrationCreate do
         credentials:{
           token: :token
         },
-        mock: :error
+        mock_status: :error
       ).perform.parser
     end
   end
@@ -40,7 +40,7 @@ describe Conduit::Driver::Wave::IntegrationCreate do
         credentials:{
           token: :token
         },
-        mock: :failure
+        mock_status: :failure
       ).perform.parser
     end
   end
@@ -54,7 +54,7 @@ describe Conduit::Driver::Wave::IntegrationCreate do
         credentials:{
           token: :token
         },
-        mock: :success
+        mock_status: :success
       ).perform.parser
     end
   end

@@ -48,7 +48,7 @@ describe Conduit::Driver::Wave::SendMessage do
         message_template_id:  1,
         recipient:            '2125551212',
         payload:              { pin: '123456' },
-        mock:  :error
+        mock_status:  :error
       ).perform.parser
     end
   end
@@ -60,7 +60,7 @@ describe Conduit::Driver::Wave::SendMessage do
         message_template_id:  1,
         recipient:            '2125551212',
         payload:              { pin: '123456' },
-        mock:  :failure
+        mock_status:  :failure
       ).perform.parser
     end
   end
@@ -72,7 +72,7 @@ describe Conduit::Driver::Wave::SendMessage do
         message_template_id:  1,
         recipient:            '2125551212',
         payload:              { pin: '123456' },
-        mock:  :success
+        mock_status:  :success
       ).perform.parser
     end
   end
