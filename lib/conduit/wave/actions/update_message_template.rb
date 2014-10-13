@@ -1,15 +1,15 @@
 module Conduit::Driver::Wave
-  class UpdateMessageTemplate < CreateMessageTemplate
+  class UpdateMessageTemplate < Conduit::Driver::Wave::Base
+    url_route          '/message_templates'
     required_attributes *Conduit::Driver::Wave.credentials,
-      :message_template_id, :profile_id, :body, :sender, :delivery_mechanism
-
+                         :message_template_id, :profile_id, :body, :sender, :delivery_mechanism
     optional_attributes :subject, :format
 
     # Required entry method, the main driver
     # class will use this to trigger the
     # request.
     #
-    def perform
+    def perform_request
       response = request(
         body:   view,
         method: :put,

@@ -1,11 +1,10 @@
 module Conduit::Driver::Wave
   # Create an outbound message in Wave
   class SendMessage < Conduit::Driver::Wave::Base
-    remote_url "#{Conduit::Wave::Configuration.api_host}/outbound_messages"
-
+    url_route          '/outbound_messages'
     required_attributes *Conduit::Driver::Wave.credentials,
-      :recipient, :message_template_id
-
+                         :recipient, :message_template_id
     optional_attributes :payload
+    http_method         :post
   end
 end
