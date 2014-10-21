@@ -1,8 +1,11 @@
+require 'conduit/wave/actions/base'
+
 module Conduit::Driver::Wave
   class UpdateMessageTemplate < Conduit::Driver::Wave::Base
     url_route          '/message_templates'
-    required_attributes *Conduit::Driver::Wave.credentials,
-                         :message_template_id, :profile_id, :body, :sender, :delivery_mechanism
+    required_attributes :message_template_id, :profile_id, :body, :sender,
+                        :delivery_mechanism
+
     optional_attributes :subject, :format
 
     # Required entry method, the main driver
