@@ -12,6 +12,12 @@ module Conduit::Driver::Wave
     def_delegator :'self.class', :http_method
     def_delegator :'self.class', :url_route
 
+    def self.inherited(base)
+      base.send :required_attributes, *(Conduit::Driver::Wave.credentials)
+      base.send :required_attributes, *(Conduit::Driver::Wave.required_attributes)
+      base.send :optional_attributes, *(Conduit::Driver::Wave.optional_attributes)
+    end
+
     class << self
       def http_method(http_method = nil)
         @http_method = http_method unless http_method.nil?

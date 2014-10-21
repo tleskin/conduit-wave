@@ -1,5 +1,3 @@
-require 'conduit/wave/actions/base'
-
 module Conduit
   module Driver
     # Conduit Driver for the BeQuick Wave Api
@@ -7,6 +5,7 @@ module Conduit
       extend Conduit::Core::Driver
 
       required_credentials :token
+      optional_attributes  :mock_status, :host_override
 
       action :authenticate_user
       action :create_user
