@@ -4,15 +4,14 @@ module Conduit
     # the Conduit::Driver::Wave
     module Configuration
       class << self
-
-        def api_host
-          'http://www.wave.dev'
-        end
+        attr_accessor :api_host
 
         def configure(&block)
           yield self
         end
       end
+
+      self.api_host = 'http://www.wave.dev'
     end
   end
 end
