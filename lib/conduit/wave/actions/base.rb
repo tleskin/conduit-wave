@@ -7,8 +7,6 @@ module Conduit::Driver::Wave
   class Base < Conduit::Core::Action
     extend Forwardable
 
-    Excon.defaults[:headers]['Content-Type'] = 'application/json'
-
     def_delegator :'self.class', :http_method
     def_delegator :'self.class', :url_route
 
@@ -48,12 +46,20 @@ module Conduit::Driver::Wave
     end
 
     def perform_request
-      response = request(body: view, method: http_method)
+      response = request(body: view, method: http_method, headers: http_headers)
       parser   = parser_class.new(response.body)
       Conduit::ApiResponse.new(raw_response: response, parser: parser)
     end
 
     private
+
+    def http_headers
+      {
+        'Accept'       => 'application/json',
+        'Content-Type' => 'application/json',
+        'X-AUTH-TOKEN' => @options[:token]
+      }
+    end
 
     def action_name
       ActiveSupport::Inflector.demodulize(self.class)
